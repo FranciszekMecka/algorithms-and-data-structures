@@ -33,8 +33,6 @@ def insert_value(value, node):
     
 def print_nodes(node):
     if node != None:
-        if (node.parent == None):
-            print(node.value, "Jest node bez parenta")
         print_nodes(node.left)
         print(node.value, end='')
         print(" ", end='')
