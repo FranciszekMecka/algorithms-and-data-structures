@@ -25,7 +25,6 @@ class Heap:
             self.arr[max_index - 1], self.arr[index - 1] = self.arr[index - 1], self.arr[max_index - 1]
             self.heapify(max_index)
 
-
     def build_heap(self):
         for x in range(len(self.arr)//2, 0, -1):
             self.heapify(x)
