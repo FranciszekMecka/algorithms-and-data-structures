@@ -37,7 +37,7 @@ def print_nodes(node):
 
 def search_node(node, value):
     if node == None:
-        return None # the value is not in the tree
+        return None #  the value is not in the tree
     if node.value == value:
         return node
     elif value >= node.value:
@@ -66,13 +66,13 @@ def predecessor(node):
 
 def delete_node(node):
     if node.left == None and node.right == None:
-        # case 1: leaf node
+        #  case 1: leaf node
         if node.parent.left == node:
             node.parent.left = None
         else:
             node.parent.right = None
     elif node.left == None or node.right == None:
-        # case 2: node with one child
+        #  case 2: node with one child
         if node.left != None:
             child = node.left
         else:
@@ -83,10 +83,16 @@ def delete_node(node):
             node.parent.right = child
         child.parent = node.parent
     else:
-        # case 3: node with two children
+        #  case 3: node with two children
         succ = successor(node)
         node.value = succ.value
         delete_node(succ)
         
+#  driver code
 
 head = Node(None, None, None, None)
+
+for x in arr:
+    insert_value(x, head)
+
+print_nodes(head)
