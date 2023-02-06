@@ -66,7 +66,7 @@ class Heap:
                 return False
         return True
 
-#  driver code code
+#  driver code
 heap = Heap()
 print(heap.arr)
 print(heap.check_heap())
