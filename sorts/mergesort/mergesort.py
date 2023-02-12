@@ -40,20 +40,8 @@ def mergeSort(arr):
             j += 1
             k += 1
  
-# Code to print the list
- 
-def printList(arr):
-    for i in range(len(arr)):
-        print(arr[i], end=" ")
-    print()
- 
- 
 # Driver Code
-if __name__ == '__main__':
-    arr = [12, 11, 13, 5, 6, 7]
-    print("Given array is", end="\n")
-    printList(arr)
-    mergeSort(arr)
-    print("Sorted array is: ", end="\n")
-    printList(arr)
- 
+arr = [12, 11, 13, 5, 6, 7, 30, 50, 4231, 34, 56]
+print(arr)
+mergeSort(arr)
+print(arr)
