@@ -4,30 +4,30 @@ arr = [ 23, 27, 79, 80, 58, 87, 9, 53, 12, 82, 45, 69, 66, 82, 8, 67, 21, 25, 3,
 #  implementation of max heap
 #  to change it to a min heap, it just takes takes to change '>' opetrators
 class Heap:
-    arr = [23, 27, 79, 80, 58, 87, 9, 53, 12, 82, 45, 69, 8, 67, 21, 25, 3, 18, 42, 42]
+    arr =  [23, 27, 79, 80, 58, 87, 9, 53, 12, 82, 45, 69, 66, 82, 8, 67, 21, 25, 3, 18, 42, 42, 11, 61, 61, 70, 40, 49, 37, 82, 83, 22, 87, 18, 65, 48, 33, 54, 25, 71, 14, 3, 80, 57, 50, 48, 1, 21, 38, 86, 63, 37, 43, 78, 62, 67, 40, 88, 35, 1, 96, 24, 73, 64, 86, 21, 83, 83, 57, 41, 16, 81, 38, 88, 65, 44, 60, 63, 7, 47, 53, 58, 98, 56, 78]
 
-    def heapify(self, index: int):
+    def heapify(self, index: int, size):
         left = self.left_child(index)
         right = self.right_child(index)
 
-        if (left <= len(self.arr)
+        if (left <= size
             and self.arr[left - 1] > self.arr[index - 1]):
             max_index = left
             
         else:
             max_index = index
 
-        if (right <= len(self.arr)
+        if (right <= size
             and self.arr[right - 1] > self.arr[max_index - 1]):
             max_index = right
 
         if max_index != index:
             self.arr[max_index - 1], self.arr[index - 1] = self.arr[index - 1], self.arr[max_index - 1]
-            self.heapify(max_index)
+            self.heapify(max_index, size)
 
     def build_heap(self):
         for x in range(len(self.arr)//2, 0, -1):
-            self.heapify(x)
+            self.heapify(x, len(self.arr))
 
     def insert_fix(self, index: int):
         parent = self.parent(index)
@@ -45,7 +45,7 @@ class Heap:
         if self.arr != []:
             self.arr[index - 1], self.arr[len(self.arr) - 1] = self.arr[len(self.arr) - 1], self.arr[index - 1]
             self.arr = self.arr[:-1]
-            self.heapify(index)
+            self.heapify(index, len(self.arr))
 
     def parent(self, value: int):
         # indexes start from 1
@@ -66,6 +66,12 @@ class Heap:
                 return False
         return True
 
+    def heap_sort(self):
+        self.build_heap()
+        for x in range(len(self.arr), 1, -1):
+            self.arr[x - 1], self.arr[0] = self.arr[0], self.arr[x - 1]
+            self.heapify(1, x - 1)
+
 #  driver code
 heap = Heap()
 print(heap.arr)
@@ -77,11 +83,14 @@ for x in range(5):
     heap.delete(1)
 print(heap.arr)
 print(heap.check_heap())
-for x in arr:
-    heap.insert(x)
+# for x in arr:
+#     heap.insert(x)
 print(heap.arr)
 print(heap.check_heap())
-for x in range(75):
+for x in range(65):
     heap.delete(1)
 print(heap.arr)
 print(heap.check_heap())
+
+heap.heap_sort()
+print(heap.arr)
